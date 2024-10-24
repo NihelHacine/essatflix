@@ -1,0 +1,531 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+.ajoutfilm {
+	--color-dark: #111;
+	--color-light: white;
+}
+
+.ajoutfilm {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.ajoutfilm {
+	font-family: "Raleway", sans-serif;
+}
+
+/* ------------------------------ */
+/* MOBILE FIRST 820px and smaller */
+/* ------------------------------ */
+
+/* ======= */
+/* GENERAL */
+/* ======= */
+
+.ajoutfilm .row {
+	width: 100%;
+}
+
+.ajoutfilm .dark {
+	background-color: var(--color-dark);
+	color: var(--color-light);
+}
+
+.ajoutfilm .light {
+	color: var(--color-dark);
+	background-color: var(--color-light);
+}
+
+.ajoutfilm .one,
+.ajoutfilm .two,
+.ajoutfilm .three,
+.ajoutfilm .four {
+	position: relative;
+}
+
+.ajoutfilm .text-style {
+	font-size: 0.9rem;
+}
+
+.ajoutfilm .left,
+.ajoutfilm .right {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	color: white;
+	font-size: 0.8rem;
+}
+
+.ajoutfilm h2 {
+	font-size: 2rem;
+	font-family: "Montserrat", sans-serif;
+	margin-bottom: 20px;
+}
+
+.ajoutfilm p {
+	margin-bottom: 0.4em;
+}
+
+.ajoutfilm aside {
+	background-color: rgb(0, 0, 0);
+	padding: 1em;
+	font-size: 1.25rem;
+	color: white;
+	margin: 1em 0.2em 1em 0.2em;
+	transform: skewX(-5deg);
+}
+
+/* =============== */
+/* GENERAL DESKTOP */
+/* =============== */
+
+@media (min-width: 820px) {
+	.ajoutfilm .row {
+		height: 700px;
+		position: relative;
+		z-index: -1;
+	}
+
+	.ajoutfilm .skew-tl::after {
+		content: "";
+		width: 150px;
+		height: 100%;
+		background-color: var(--color-dark);
+		position: absolute;
+		left: 0;
+		top: 0;
+		clip-path: polygon(100% 0, 0 0, 0 100%);
+	}
+
+	.ajoutfilm .skew-tr::after {
+		content: "";
+		width: 150px;
+		height: 100%;
+		background-color: var(--color-light);
+		position: absolute;
+		right: 0;
+		top: 0;
+		clip-path: polygon(100% 0, 0 0, 100% 100%);
+	}
+
+	.ajoutfilm .skew-text-tr::after {
+		content: "";
+		width: 150px;
+		height: 100%;
+		background-color: var(--color-dark);
+		position: absolute;
+		right: -150px;
+		top: 0;
+		clip-path: polygon(80% 0, 0 0, 0 100%);
+		opacity: 0.9;
+	}
+
+	.ajoutfilm .skew-text-tl::after {
+		content: "";
+		width: 150px;
+		height: 100%;
+		background-color: var(--color-light);
+		position: absolute;
+		left: -150px;
+		top: 0;
+		clip-path: polygon(100% 0, 20% 0, 100% 100%);
+	}
+
+	.ajoutfilm h2 {
+		font-size: 3rem;
+		margin-bottom: 20px;
+		column-span: all;
+	}
+}
+@media (max-width:820px){
+	.skew-tl {
+		display: none;
+	}
+}
+
+/* ============= */
+/* HEADER MOBILE */
+/* ============= */
+
+.ajoutfilm header text {
+	background-color: var(--color-dark);
+	opacity: 0.9;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	margin: 2rem 1rem;
+	padding: 2rem 1rem;
+}
+
+.ajoutfilm header figure {
+	position: absolute;
+	top: 0;
+	max-height: 800px;
+	z-index: 0;
+}
+
+.ajoutfilm header img {
+	max-width: 820px;
+}
+
+.ajoutfilm .headline {
+	color: var(--color-light);
+	font-size: 3.5rem;
+	font-family: "Montserrat", sans-serif;
+	margin-bottom: 16px;
+}
+
+.ajoutfilm .subhead {
+	color: var(--color-light);
+	font-size: 2rem;
+	font-family: "Montserrat", sans-serif;
+}
+
+.ajoutfilm header .info-flex {
+	margin-top: 3rem;
+	display: flex;
+	flex-direction: column;
+	font-size: 0.75rem;
+}
+
+.ajoutfilm header p {
+	font-size: 1rem;
+	margin-bottom: 0.3em;
+}
+
+.ajoutfilm header .tag {
+	background-color: #00ffea;
+	padding: 0.2em 1.2em;
+	color: var(--color-dark);
+	transform: skewX(-15deg);
+	display: inline-block;
+	font-size: 0.8rem;
+}
+
+/* ============== */
+/* HEADER DESKTOP */
+/* ============== */
+
+@media (min-width: 820px) {
+	.ajoutfilm header .text {
+		height: 500px;
+		width: 800px;
+		top: 50px;
+		left: 50px;
+		position: absolute;
+	}
+
+	.ajoutfilm .right {
+		left: unset;
+		right: 0;
+	}
+
+	.ajoutfilm header figure {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 700px;
+		width: auto;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.ajoutfilm header img {
+		height: 1000px;
+		width: auto;
+	}
+
+	.ajoutfilm .headline {
+		color: var(--color-dark);
+		text-shadow: -2px -2px rgb(0, 204, 255), 2px 2px rgb(136, 255, 209);
+		font-size: 7rem;
+		margin-bottom: 16px;
+	}
+
+	.ajoutfilm .subhead {
+		color: #ccc;
+		font-size: 3rem;
+		font-family: "Montserrat", sans-serif;
+	}
+
+	.ajoutfilm header .info-flex {
+		margin-top: 3rem;
+		display: flex;
+		flex-direction: column;
+		font-size: 0.75rem;
+	}
+
+	.ajoutfilm header .info-flex {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+
+	.ajoutfilm header p {
+		margin-top: 1rem;
+		color: white;
+		font-family: "Raleway", sans-serif;
+	}
+
+	.ajoutfilm header .tag {
+		background-color: #00ffea;
+		padding: 0.2em 1.5em;
+		color: var(--color-dark);
+		transform: skewX(-15deg);
+		display: inline-block;
+	}
+
+	.ajoutfilm header svg {
+		margin-top: 0.7rem;
+		filter: grayscale(1);
+	}
+}
+
+/* ================== */
+/* SECTION ONE MOBILE */
+/* ================== */
+
+.ajoutfilm .one .text {
+	background-color: var(--color-light);
+	opacity: 0.9;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	top: 20px;
+	margin: 2rem 1rem;
+	padding: 2rem 1rem;
+}
+
+.ajoutfilm .one figure {
+	position: absolute;
+	top: 0;
+	max-height: 800px;
+	z-index: 0;
+}
+
+.ajoutfilm .one img {
+	max-width: 820px;
+}
+
+/* =================== */
+/* SECTION ONE DESKTOP */
+/* =================== */
+
+@media (min-width: 820px) {
+	.ajoutfilm .one .text {
+		position: absolute;
+		height: 600px;
+		width: 800px;
+		top: 50px;
+		right: 50px;
+		z-index: 1;
+		font-size: 0.85rem;
+		column-count: 3;
+		padding: 1rem;
+	}
+
+	.ajoutfilm .one figure {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 700px;
+		width: auto;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.ajoutfilm .one img {
+		height: 900px;
+		width: auto;
+	}
+}
+
+/* ================== */
+/* SECTION TWO MOBILE */
+/* ================== */
+
+.ajoutfilm .two .text {
+	background-color: var(--color-dark);
+	opacity: 0.9;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	top: 20px;
+	margin: 2rem 1rem;
+	padding: 2rem 1rem;
+}
+
+.ajoutfilm .two figure {
+	position: absolute;
+	top: 0;
+	max-height: 800px;
+	z-index: 0;
+}
+
+.ajoutfilm .two img {
+	max-width: 820px;
+}
+
+/* =================== */
+/* SECTION TWO DESKTOP */
+/* =================== */
+
+@media (min-width: 820px) {
+	.ajoutfilm .two .text {
+		position: absolute;
+		height: 500px;
+		width: 800px;
+		top: 50px;
+		left: 50px;
+		z-index: 1;
+		font-size: 0.85rem;
+		column-count: 2;
+		padding: 1rem;
+	}
+
+	.ajoutfilm .right {
+		left: unset;
+		right: 0;
+	}
+
+	.ajoutfilm .two figure {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 700px;
+		width: auto;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.ajoutfilm .two img {
+		height: 900px;
+		width: auto;
+	}
+}
+
+/* ==================== */
+/* SECTION THREE MOBILE */
+/* ==================== */
+
+.ajoutfilm .three .text {
+	background-color: var(--color-light);
+	opacity: 0.9;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	top: 20px;
+	margin: 2rem 1rem;
+	padding: 2rem 1rem;
+}
+
+.ajoutfilm .three figure {
+	position: absolute;
+	top: 0;
+	max-height: 800px;
+	z-index: 0;
+}
+
+.ajoutfilm .three img {
+	max-width: 820px;
+}
+
+/* ===================== */
+/* SECTION THREE DESKTOP */
+/* ===================== */
+
+@media (min-width: 820px) {
+	.ajoutfilm .three .text {
+		position: absolute;
+		height: 600px;
+		width: 800px;
+		top: 50px;
+		right: 50px;
+		z-index: 1;
+		font-size: 0.85rem;
+		column-count: 3;
+		padding: 1rem;
+	}
+
+	.ajoutfilm .three figure {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 700px;
+		width: auto;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.ajoutfilm .three img {
+		height: 900px;
+		width: auto;
+	}
+}
+
+/* =================== */
+/* SECTION FOUR MOBILE */
+/* =================== */
+
+.ajoutfilm .four .text {
+	background-color: var(--color-dark);
+	opacity: 0.9;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	top: 20px;
+	margin: 2rem 1rem;
+	padding: 2rem 1rem;
+}
+
+.ajoutfilm .four figure {
+	position: absolute;
+	top: 0;
+	max-height: 800px;
+	z-index: 0;
+}
+
+.ajoutfilm .four img {
+	max-width: 820px;
+}
+
+/* ==================== */
+/* SECTION FOUR DESKTOP */
+/* ==================== */
+
+@media (min-width: 820px) {
+	.ajoutfilm .four .text {
+		position: absolute;
+		height: 500px;
+		width: 800px;
+		top: 50px;
+		left: 50px;
+		z-index: 1;
+		font-size: 0.85rem;
+		column-count: 3;
+		padding: 1rem;
+	}
+
+	.ajoutfilm .right {
+		left: unset;
+		right: 0;
+	}
+
+	.ajoutfilm .four figure {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 700px;
+		width: auto;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.ajoutfilm .four img {
+		height: 900px;
+		width: auto;
+	}
+}
