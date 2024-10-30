@@ -1,17 +1,27 @@
-import {PrettyChatWindow} from 'react-chat-engine-pretty'
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { ChatEngine, ChatFeed, ChatList, MessageFormSocial } from 'react-chat-engine';
+import Loading from './Loading';
 import Navbarr from './Navbarr';
-const ChatsPage = (props) => {
-    // const chatProps = useMultiChatLogic('f74cf75d-c7e7-461a-9bd2-f245709f8698', props.user.username, props.user.secret);
-    return ( 
-    <div style={{height:'100vh'}}>
-    <Navbarr/>
-    <PrettyChatWindow 
-      projectId="6b2d9a57-8bf5-4890-b4db-b601b2f26769"
-      username= {props.user.username}
-      secret={props.user.secret}
-      style={{ height: '100vh' }}
-    />
-   </div>
-   );
-  };
-  export default ChatsPage;
+
+function Chatspage({user}) {
+  console.log(user)
+    // Rendu du composant ChatEngine une fois que l'utilisateur est disponible
+    return (
+        <div>
+            <Navbarr />
+            <ChatEngine
+                projectID="5143bf92-46fd-442e-89c1-c16df79098d2"
+                userName={user?.pseudo}
+                userSecret={user?.secret_chat} // Assurez-vous que `user.token` est correct
+                height="100vh"
+                renderChatList={(chatAppState) => <ChatList {...chatAppState} />}
+                renderChatFeed={(chatAppState) => <ChatFeed {...chatAppState} />}
+                renderNewMessageForm={(creds, chatId) => <MessageFormSocial creds={creds} chatId={chatId} />}
+                onError={(error) => console.error("Error connecting to ChatEngine: ", error)} // Gestion des erreurs
+            />
+        </div>
+    );
+}
+
+export default Chatspage;

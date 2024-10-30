@@ -9,6 +9,7 @@ const filmSchema = new schema({
     photo : {type:String , required:true},
     video : {type:String , required:true},
     add_date : {type:Date,required:true},
+    rating : {type:Number, required:true}
     }
   );
   

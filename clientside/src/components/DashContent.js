@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './CssFolder/DashContent.css'
 import { Link } from 'react-router-dom'
 import { useSelector} from "react-redux";
@@ -8,9 +8,16 @@ import Navbarr from './Navbarr';
 function DashContent() {
   const isAuth = localStorage.getItem("token");
   const user = useSelector((state) => state.user?.user);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+      // Vérifier si l'utilisateur est admin à partir du stockage local
+      const adminStatus = localStorage.getItem("isAdmin") === 'true';
+      setIsAdmin(adminStatus);
+    }, []);
   return (
     <>
-     {isAuth&&user?.email==="admin@gmail.com"?(
+     {isAdmin?(
     <>
     <Navbarr/>
     <div className='dashcontent'>
@@ -25,6 +32,12 @@ function DashContent() {
           <li>
             <div className="icon"><i className="fa-solid fa-user" /></div>
             <div className="title">Gestion des films</div>
+          </li>
+          </Link>
+          <Link to='/filmdirectdetails' style={{textDecoration:'none'}}>
+          <li>
+            <div className="icon"><i className="fa-solid fa-user" /></div>
+            <div className="title">Films direct</div>
           </li>
           </Link>
           

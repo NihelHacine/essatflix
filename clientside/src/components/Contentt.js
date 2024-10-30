@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 function Contentt({user}) {
   const dispatch = useDispatch();
   const films = useSelector((state) => state.films?.filmlist);
+  const favoris = useSelector((state)=> state.favoris?.favorilist);
+
 
   // Trier les films par date d'ajout, puis prendre les 4 plus récents
   const recentFilms = films?.length
@@ -16,37 +18,57 @@ function Contentt({user}) {
     : [];
 
     const [favori, setfavori] = useState({
-      film: "",
-      email_user: user?.email
-    });
+        film: "",
+        email_user: user?.email
+      });
   
-  const ajout = (id) => {
-      // Mise à jour en une seule fois
-      setfavori({
-        ...favori,
-        film: id
-      });
+    const ajout = (id) => {
+      // Recherche du film dans la liste
+      const tofind = favoris?.find((f) => f?.film === id);
     
-      // Utilisez un callback pour être sûr d'utiliser la mise à jour la plus récente
-      setfavori(prevFavori => {
-        const updatedFavori = {
-          ...prevFavori,
-          film: id,
-          email_user: user?.email
-        };
-        
-        // Assurez-vous que dispatch est appelé avec l'état mis à jour
-        dispatch(addfavori(updatedFavori));
-        
-        // Affiche le message de succès
-        Swal.fire({
-          title: "C'est fait!",
-          text: "Le film a été ajouté à votre liste de favoris!",
-          icon: "success"
+      if (!tofind) {
+        // Si le film n'est pas déjà dans la liste des favoris, on l'ajoute
+        setfavori(prevFavori => {
+          const updatedFavori = {
+            ...prevFavori,
+            film: id,
+            email_user: user?.email
+          };
+    
+          // Dispatch pour ajouter le film aux favoris
+          dispatch(addfavori(updatedFavori));
+    
+          // Notification de succès
+          Swal.fire({
+            title: "C'est fait!",
+            text: "Le film a été ajouté à votre liste de favoris!",
+            icon: "success"
+          });
+          window.location.reload();
+    
+          return updatedFavori;
         });
-    
-        return updatedFavori; // Retourner la mise à jour
-      });
+      } else {
+        // Si le film est déjà dans la liste des favoris, affiche un message
+        Swal.fire({
+          title: "Ce film existe déjà dans votre liste des favoris!",
+          showClass: {
+            popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `
+          },
+          hideClass: {
+            popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `
+          }
+        });
+        
+      }
     };
 
   return (
@@ -101,7 +123,7 @@ function Contentt({user}) {
                             </Link>
                           </a>
                         </div>
-                        <a href="" className="buy-btn" onClick={()=>ajout(el?._id)}>
+                        <a className="buy-btn" onClick={()=>ajout(el?._id)}>
                                                         
                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={'20'} height={'20'}><path fill="#fa0505" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
                                                        

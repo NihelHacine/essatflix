@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './CssFolder/Contentt.css';
 import Navbarr from './Navbarr';
-import { Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { addfavori } from '../redux/favoriSlice';
+import ReactStars from "react-rating-stars-component";
+import Form from 'react-bootstrap/Form';
 
-function Films({user}) {
+function Films({user, text, settext, stars, setstars}) {
     const dispatch = useDispatch()
     const films = useSelector((state) => state.films?.filmlist);
     const favoris = useSelector((state)=> state.favoris?.favorilist);
@@ -40,6 +42,7 @@ function Films({user}) {
               text: "Le film a été ajouté à votre liste de favoris!",
               icon: "success"
             });
+            window.location.reload();
       
             return updatedFavori;
           });
@@ -76,13 +79,28 @@ function Films({user}) {
             <div className="contentt">
                 <div className="container text-center text">
                     <h1 contentEditable spellCheck="false">Choisir votre film !</h1>
-                    
+                    <ReactStars style={{marginRight:'20px'}}
+    count={5}
+    size={24}
+    activeColor="red"
+    onChange={(newRating) => setstars(newRating)}
+  />
+                    <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+              onChange={(e) => settext(e.target.value)}
+            />
+          </Form>
                 </div>
                 <div className="shell">
                     <div className="container">
                         <div className="row">
                             {sortedFilms.length > 0 ? (
-                                sortedFilms.map((el) => (
+                                sortedFilms.filter((el) => el?.film.toLowerCase().includes(text.toLowerCase())&& 
+                                el?.rating>=stars).map((el) => (
                                     <div className="col-md-3" key={el.id}>
                                         <div className="wsk-cp-product">
                                             <div className="wsk-cp-img">
@@ -114,6 +132,13 @@ function Films({user}) {
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={'20'} height={'20'}><path fill="#fa0505" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
                                                        
                                                         </a>
+                                                        <ReactStars
+    count={5}
+    size={24}
+    activeColor="#991414"
+    value={el?.rating}
+    edit={false}
+  />
                                                 </div>
                                             </div>
                                         </div>

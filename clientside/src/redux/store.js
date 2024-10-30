@@ -3,6 +3,7 @@ import userSlice from './userSlice'
 import usersSlice from './usersSlice'
 import filmSlice from './filmSlice'
 import favoriSlice from './favoriSlice'
+import  filmdirectSlice  from './filmdirectSlice'
 
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
     user : userSlice,
     users : usersSlice,
     films : filmSlice,
-    favoris : favoriSlice
+    favoris : favoriSlice,
+    filmdirect : filmdirectSlice,
 
 
   },

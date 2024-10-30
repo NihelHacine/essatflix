@@ -20,11 +20,17 @@ import ChatsPage from './components/ChatsPage';
 import FilmCatg from './components/FilmCatg';
 import { getfavori } from './redux/favoriSlice';
 import Favoris from './components/Favoris';
+import { getfilmdirect } from './redux/filmdirectSlice';
+import Filmdirectmanag from './components/Filmdirectmanag';
+import DisplayFilmDirect from './components/DisplayFilmDirect';
+import Registration from './components/Registration';
+import Annonce from './components/Annonce';
 
 function App() {
   const [text, settext] = useState("");
-  const [ping, setping] = useState(false);
-  const [user, setuser] = useState(undefined);
+  const [stars, setstars] = useState(0)
+
+
     
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,30 +38,34 @@ function App() {
     dispatch(userCurrent());
     dispatch(getfilm());
     dispatch(getfavori());
-  }, [ping])
+    dispatch(getfilmdirect());
+    
+  }, [])
 
-  const current_user = useSelector((state) => state.user?.user);
+  const filmdirect = useSelector((state)=>state.filmdirect?.filmdirectlist);
+  const user_connected = JSON.parse(localStorage.getItem("user_connected"));
+
+
 
 
   return (
     < >
      <Routes>
-      <Route path='/' element={<LoginPage/>}/>
-      <Route path='/home' element={<PrivateRoute><Home /></PrivateRoute>}/>
+      <Route path='/register' element={<Registration/>}/>
+      <Route path='/' element={<LoginPage />}/>
+      <Route path='/home' element={<PrivateRoute><Home user={user_connected} filmdirect={filmdirect}/></PrivateRoute>}/>
       <Route path='/about' element={<PrivateRoute><About/></PrivateRoute>}/>
-      <Route  path='/dashboard' element={<PrivateRoute><DashContent/></PrivateRoute>}/>
-      <Route  path='/userslist' element={<PrivateRoute><UserManag/></PrivateRoute>}/>
-      <Route  path='/filmslist' element={<PrivateRoute><FilmsManag/></PrivateRoute>}/>
-      <Route  path='/films' element={<PrivateRoute><Films user={current_user}/></PrivateRoute>}/>
-      <Route  path='/favoris' element={<PrivateRoute><Favoris user={current_user}/></PrivateRoute>}/>
-      <Route  path='/film/:id' element={<PrivateRoute><DisplayFilm/></PrivateRoute>}/>
-      <Route  path='/films/:cat' element={<PrivateRoute><FilmCatg user={current_user}/></PrivateRoute>}/>
+      <Route  path='/dashboard' element={<PrivateRoute><DashContent user={user_connected}/></PrivateRoute>}/>
+      <Route  path='/userslist' element={<PrivateRoute><UserManag user={user_connected}/></PrivateRoute>}/>
+      <Route  path='/filmslist' element={<PrivateRoute><FilmsManag user={user_connected}/></PrivateRoute>}/>
+      <Route  path='/filmdirectdetails' element={<PrivateRoute><Filmdirectmanag user={user_connected}/></PrivateRoute>}/>
+      <Route  path='/films' element={<PrivateRoute><Films stars={stars} setstars={setstars} user={user_connected} text={text} settext={settext}/></PrivateRoute>}/>
+      <Route  path='/filmdirect' element={<PrivateRoute><DisplayFilmDirect filmdirect={filmdirect} user={user_connected} /></PrivateRoute>}/>
+      <Route  path='/favoris' element={<PrivateRoute><Favoris user={user_connected}/></PrivateRoute>}/>
+      <Route  path='/film/:id' element={<PrivateRoute><DisplayFilm user={user_connected}/></PrivateRoute>}/>
+      <Route  path='/films/:cat' element={<PrivateRoute><FilmCatg user={user_connected}/></PrivateRoute>}/>
       <Route path='/chatroom' element={<PrivateRoute>
-        {(!user)?
-     (<AuthPage onAuth={(user) => setuser(user)} current_user={current_user}/>)
-  
-     :(<ChatsPage user={user} />)
-    }
+       <ChatsPage user={user_connected}/>
       </PrivateRoute>}/>
 
      </Routes>

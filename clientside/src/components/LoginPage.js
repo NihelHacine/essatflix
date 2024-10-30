@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';import './CssFolder/LoginPage.css'
+import { Link, useNavigate } from 'react-router-dom';import './CssFolder/LoginPage.css'
 import { userLogin } from '../redux/userSlice';
 import Loading from './Loading';
 
+
 function LoginPage() {
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,7 +36,7 @@ function LoginPage() {
         <form action className='form'>
           <div className="input-box">
             <h2 className='h2'>S'authentifier</h2>
-            <input type="email" required onChange={(e)=> setlogin({...login,email : e.target.value})}/>
+            <input type="email" required onChange={(e)=> setlogin({...login,email : e.target.value})} name='username'/>
             <span>Email</span>
             <i />
           </div>
@@ -43,6 +46,7 @@ function LoginPage() {
             <i />
           </div>
           <input className='input' defaultValue="Login" value="Valider" onClick={() => {dispatch(userLogin(login))}}/>
+          <input className='input' defaultValue="Login" value="S'inscrire" onClick={()=>navigate('/register')}/>
         </form>
       </div>
     </div>

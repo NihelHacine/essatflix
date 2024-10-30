@@ -6,6 +6,10 @@ const userSchema = new schema({
     cin : {type:Number , required:true},
     email : {type:String , required:true},
     password : {type:String , required:true},
+    secret_chat : {type:String, required:true},
+    classe : {type:String, required: true},
+    date_naissance : {type:String, required:true},
+    etat : {type: String, default:'en cours'}
     }
   );
   

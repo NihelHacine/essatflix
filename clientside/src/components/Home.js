@@ -2,17 +2,16 @@ import React from 'react'
 import Header from './Header'
 import Contentt from './Contentt'
 import Navbarr from './Navbarr'
-import { useSelector } from 'react-redux'
+import Annonce from './Annonce'
 
 
-function Home() {
-  const user = useSelector((state)=>state.user?.user)
-  console.log("first bonjour")
-  console.log("user", user)
+function Home({user,filmdirect}) {
+
   return (
     <>
     <Navbarr/>
     <Header/>
+    <Annonce filmdirect={filmdirect} />
     <Contentt user={user}/>
     {/* <AjoutFilm/> */}
         </>

@@ -18,7 +18,8 @@ function AddFilm() {
       'description' :'',
       'photo' : '',
       'video': '',
-      'add_date': new Date ()
+      'add_date': new Date (),
+      'rating':''
     })
     
   return (
@@ -72,6 +73,13 @@ function AddFilm() {
       id="inputPassword5"
       aria-describedby="passwordHelpBlock"
       onChange={(e)=>setfilm({...film, video:e.target.value})}
+    />
+    <Form.Label htmlFor="inputPassword5">Nombre d'étoiles de 1 a 5 </Form.Label>
+    <Form.Control
+      type="number"
+      id="inputPassword5"
+      aria-describedby="passwordHelpBlock"
+      onChange={(e)=>setfilm({...film, rating:e.target.value})}
     />
       </Modal.Body>
       <Modal.Footer>
