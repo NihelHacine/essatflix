@@ -24,7 +24,7 @@ import { getfilmdirect } from './redux/filmdirectSlice';
 import Filmdirectmanag from './components/Filmdirectmanag';
 import DisplayFilmDirect from './components/DisplayFilmDirect';
 import Registration from './components/Registration';
-import Annonce from './components/Annonce';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
   const [text, settext] = useState("");
@@ -53,6 +53,7 @@ function App() {
      <Routes>
       <Route path='/register' element={<Registration/>}/>
       <Route path='/' element={<LoginPage />}/>
+      <Route path='/reset-password/:token' element={<ResetPassword />}/>
       <Route path='/home' element={<PrivateRoute><Home user={user_connected} filmdirect={filmdirect}/></PrivateRoute>}/>
       <Route path='/about' element={<PrivateRoute><About/></PrivateRoute>}/>
       <Route  path='/dashboard' element={<PrivateRoute><DashContent user={user_connected}/></PrivateRoute>}/>

@@ -42,11 +42,11 @@ function Registration() {
     onChange={(e) => setregister({ ...register, classe: e.target.value })}
 >
     <option value="">choisir votre classe</option>
-    <option value="1">1ere branche commune info</option>
-    <option value="2">2eme GL</option>
-    <option value="3">2eme RT</option>
-    <option value="4">3eme GL</option>
-    <option value="4">3eme RT</option>
+    <option value="1ere branche commune info">1ere branche commune info</option>
+    <option value="2eme GL">2eme GL</option>
+    <option value="2eme RT">2eme RT</option>
+    <option value="3eme GL">3eme GL</option>
+    <option value="3eme RT">3eme RT</option>
 
 </Form.Select><br/>
 
